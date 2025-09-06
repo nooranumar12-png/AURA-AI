@@ -5,13 +5,13 @@ workflows:
     environment:
       node: 18
       java: 11
-      npm: true
     scripts:
       - name: Install dependencies
         script: npm install
       - name: Build APK
         script: |
           npx expo prebuild
-          npx expo build:android -t apk
+          cd android
+          ./gradlew assembleDebug
     artifacts:
-      - android/app/build/outputs/**/*.apk
+      - android/app/build/outputs/apk/debug/app-debug.apk
